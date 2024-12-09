@@ -8,7 +8,6 @@ import 'package:seminario_movimentos/forge2/ball_game/bolinha_forge.dart';
 class HomePage extends Component with HasGameRef<BolinhaForge> {
   late final TextComponent _logo;
   late final RoundedButton _button1;
-  late final RoundedButton _button2;
 
   HomePage() {
     addAll([
@@ -28,12 +27,6 @@ class HomePage extends Component with HasGameRef<BolinhaForge> {
         color: const Color(0xffadde6c),
         borderColor: const Color(0xffedffab),
       ),
-      _button2 = RoundedButton(
-        text: 'Pou',
-        action: () => gameRef.route.pushNamed('/pou'),
-        color: const Color(0xffdebe6c),
-        borderColor: const Color(0xfffff4c7),
-      ),
     ]);
   }
   @override
@@ -41,6 +34,5 @@ class HomePage extends Component with HasGameRef<BolinhaForge> {
     super.onGameResize(size);
     _logo.position = Vector2(size.x / 2, size.y / 3);
     _button1.position = Vector2(size.x / 2, _logo.y + 80);
-    _button2.position = Vector2(size.x / 2, _logo.y + 140);
   }
 }

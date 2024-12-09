@@ -6,6 +6,7 @@ import 'package:seminario_movimentos/forge2/ball_game/components/wall.dart';
 
 import '../../../buttons/back_button.dart';
 import 'ball.dart';
+import 'hole.dart';
 
 class BallGame extends Forge2DWorld with HasGameRef<BolinhaForge>{
   var balls = <Ball>[];
@@ -43,6 +44,10 @@ class BallGame extends Forge2DWorld with HasGameRef<BolinhaForge>{
 
     // Adiciona as paredes de limite
     addAll(createBoundaries());
+
+    //add hole
+    add(Hole(position: Vector2(-10, -30),raio: 5));
+    add(Hole(position: Vector2(10, -30),raio: 5));
   }
 
   List<Component> createBoundaries() {
@@ -58,23 +63,5 @@ class BallGame extends Forge2DWorld with HasGameRef<BolinhaForge>{
       Wall(bottomLeft, bottomRight),
       Wall(topLeft, bottomLeft),
     ];
-  }
-
-  @override
-  void onRemove() {
-    // 1. Remove os corpos do mundo e seus componentes
-    for (final ball in balls) {
-      if (ball.body != null) {
-        gameRef.world.destroyBody(ball.body!); // Destroi o corpo do mundo
-      }
-      remove(ball); // Remove o componente Ball
-    }
-    balls.clear(); // Limpa a lista de bolas
-
-    // 2. Remove componentes HUD
-    gameRef.camera.viewport.removeAll(hudComponents);
-
-    // 5. Chama o super para finalizar
-    super.onRemove();
   }
 }

@@ -1,16 +1,15 @@
 import 'dart:math';
-
-import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame/game.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
+import 'package:seminario_movimentos/forge2/ball_game/components/hole.dart';
+import 'package:seminario_movimentos/forge2/ball_game/components/wall.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
-
-class Ball extends BodyComponent with TapCallbacks, CollisionCallbacks {
+class Ball extends BodyComponent with TapCallbacks, ContactCallbacks {
   Vector2 accelerometerForce = Vector2.zero();
 
   Ball({Vector2? initialPosition, required double raio})
@@ -23,8 +22,6 @@ class Ball extends BodyComponent with TapCallbacks, CollisionCallbacks {
         friction: 0.3,
         density: 0.6,   // o quanto a bolinha resiste para ser puxada pela inercia
       ),
-
-
     ],
     bodyDef: BodyDef(
       angularDamping: 0.5, //Controle do giro
@@ -50,15 +47,13 @@ class Ball extends BodyComponent with TapCallbacks, CollisionCallbacks {
   }
 
   @override
-  void onCollisionStart(
-      Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is Ball) {
-      final direction = (body.position - other.position).normalized();
-
-      // Aplique forças em direções opostas
-      body.applyForce(direction * 100);
+  void beginContact(Object other, Contact contact) {
+    if (other is Hole) {
+      debugPrint("Bolinha caiu no buraco");
+      removeFromParent();
+      game.remove(this);
     }
-
-    super.onCollisionStart(intersectionPoints, other);
+    super.beginContact(other, contact);
   }
 }
+
