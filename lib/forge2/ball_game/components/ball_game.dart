@@ -10,19 +10,15 @@ import 'hole.dart';
 
 class BallGame extends Forge2DWorld with HasGameRef<BolinhaForge>{
   var balls = <Ball>[];
-  final hudComponents = <Component>[];
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    gameRef.camera.viewport.add(BackButton()); // HUD
 
     double yPos = 0;
     double xPos = -10;
 
     double raioDaBola = 1;
-
-    // add(FpsTextComponent());
 
     // Adiciona várias bolinhas com posições iniciais diferentes
     balls = List.generate(
@@ -46,8 +42,10 @@ class BallGame extends Forge2DWorld with HasGameRef<BolinhaForge>{
     addAll(createBoundaries());
 
     //add hole
-    add(Hole(position: Vector2(-10, -30),raio: 5));
-    add(Hole(position: Vector2(10, -30),raio: 5));
+    add(Hole(position: Vector2(24, 0),raio: 5));
+    add(Hole(position: Vector2(-24, 0),raio: 5));
+    add(Hole(position: Vector2(0, 45),raio: 5));
+    add(Hole(position: Vector2(0, -45),raio: 5));
   }
 
   List<Component> createBoundaries() {

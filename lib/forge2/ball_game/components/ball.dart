@@ -45,15 +45,5 @@ class Ball extends BodyComponent with TapCallbacks, ContactCallbacks {
     body.applyForce(accelerometerForce * dt);
     super.update(dt);
   }
-
-  @override
-  void beginContact(Object other, Contact contact) {
-    if (other is Hole) {
-      debugPrint("Bolinha caiu no buraco");
-      removeFromParent();
-      game.remove(this);
-    }
-    super.beginContact(other, contact);
-  }
 }
 

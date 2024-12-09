@@ -14,11 +14,4 @@ class BolinhaForge extends Forge2DGame with TapCallbacks{
 
     add(route);
   }
-
-  void voltar(){
-    removeFromParent();
-    route.pop();
-  }
-
-
 }

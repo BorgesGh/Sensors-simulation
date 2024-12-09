@@ -29,21 +29,4 @@ class Hole extends BodyComponent with ContactCallbacks {
     ],
     paint: Paint()..color = Colors.white
   );
-
-  @override
-  void beginContact(Object other, Contact contact) {
-    if (other is Ball) {
-      debugPrint("Bolinha caiu no buraco");
-      other.removeFromParent();
-    }
-    super.beginContact(other, contact);
-  }
-
-  // @override
-  // void onMount() {
-  //   add(MoveByEffect(
-  //       Vector2(0, 20), EffectController(infinite: true,duration: 5,curve: Curves.easeInOut)
-  //   ));
-  //   super.onMount();
-  // }
 }

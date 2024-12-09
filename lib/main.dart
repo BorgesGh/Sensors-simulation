@@ -14,4 +14,3 @@ void main() {
     runApp(const GameWidget.controlled(gameFactory: BolinhaForge.new));
   });
 }
-
