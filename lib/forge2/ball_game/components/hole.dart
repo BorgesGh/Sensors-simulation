@@ -4,7 +4,6 @@ import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
-import 'package:seminario_movimentos/forge2/ball_game/bolinha_forge.dart';
 
 import 'ball.dart';
 
